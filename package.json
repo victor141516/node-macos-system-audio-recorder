@@ -1,0 +1,37 @@
+{
+  "name": "macos-system-audio-recorder",
+  "version": "0.0.1",
+  "description": "A library to record system audio on macOS",
+  "author": "Victor Fernandez <victor.fernandez.gabriel@gmail.com>",
+  "license": "MIT",
+  "repository": "https://github.com/victor141516/node-macos-system-audio-recorder",
+  "module": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "22.13.5",
+    "@swc/cli": "0.6.0",
+    "@swc/core": "1.11.5"
+  },
+  "scripts": {
+    "dev": "SYSTEM_AUDIO_RECORDER_BINARY_PATH=./swift/build/SystemAudioRecorder tsx --watch example.ts",
+    "postinstall": "(cd swift && ./build.sh)",
+    "build:compile": "swc src -d dist --strip-leading-paths",
+    "build:types": "tsc --project compile-types.tsconfig.json --outDir dist",
+    "build": "$npm_execpath run build:compile && $npm_execpath run build:types",
+    "prebuild": "(cd swift && ./build.sh)",
+    "postbuild": "mkdir -p dist/bin && cp swift/build/SystemAudioRecorder dist/bin/SystemAudioRecorder"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "macos",
+    "audio-record",
+    "system-audio-record",
+    "stereo-mix",
+    "ScreenCaptureKit",
+    "screen-capture-kit"
+  ]
+}
