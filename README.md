@@ -1,5 +1,3 @@
-markdown
-
 # macOS System Audio Recorder
 
 A Node.js library to record system audio on macOS using ScreenCaptureKit.
